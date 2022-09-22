@@ -25,6 +25,7 @@ jobs:
       uses: browser-actions/setup-edge@v0.0.0
     - name: Setup Edgedriver and adding to environment variables
       run: |
+        git clone /path/to/repo.git /path/to/repo 
         set PATH=%PATH%;edgedriver_win32
     - name: do report
       run: |
