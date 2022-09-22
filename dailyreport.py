@@ -7,8 +7,10 @@ import re
 import os
 
 
-# 添加edgedriver文件夹到环境变量
-os.environ["PATH"] += os.pathsep + os.path.split(os.path.realpath(__file__))[0] + '\edgedriver_win32'
+# 如果edgedriver文件夹不在环境变量中，则添加
+if os.environ["PATH"].find('edgedriver') == -1:
+    file_path = os.path.split(os.path.realpath(__file__))[0] + '\edgedriver_win32'
+    os.environ["PATH"] += os.pathsep + file_path
 
 # 获取ip
 def getOutterIP():
