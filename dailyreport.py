@@ -3,13 +3,25 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+import requests
+import re
 
+# 获取ip
+def getOutterIP():
+    ip = ''    
+    try:
+        res = requests.get('https://myip.ipip.net', timeout=5).text
+        ip = re.findall(r'(\d+\.\d+\.\d+\.\d+)', res)
+        ip = ip[0] if ip else ''
+    except:
+        pass
+    return ip
 
 # 打开浏览器
 options = webdriver.EdgeOptions()
 useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763'     # 默认win10的useragent，可自行修改
 options.add_argument("user-agent:{}".format(useragent))
-options.add_argument("--proxy-server = http://{}".format('ip_address'))    # 填入自己的ip地址
+options.add_argument("--proxy-server = http://{}".format(getOutterIP()))
 driver = webdriver.Edge(options=options)
 driver.set_page_load_timeout(10)
 url = 'http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/index.do?t_s=1663806336536&amp_sec_version_=1&gid_=UHltZHBQNHNManRNSm1TZzRESHh2ZlAxWERmZmJ3UFNMR0dXTWkweDArK1VEMXF6YVBqNmd5NFl2NGRRVGdTQ3hUZFgzK1UyaTRlT1JFV2o4WFZONHc9PQ&EMAP_LANG=zh&THEME=indigo#/dailyReport'
