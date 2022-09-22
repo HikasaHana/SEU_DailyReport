@@ -7,6 +7,10 @@ import re
 import os
 
 
+# 配置信息
+number = ''     # 一卡通号
+password = ''       # 密码
+
 # 如果edgedriver文件夹不在环境变量中，则添加
 if os.environ["PATH"].find('edgedriver') == -1:
     file_path = os.path.split(os.path.realpath(__file__))[0] + '\edgedriver_win32'
@@ -42,8 +46,8 @@ for i in all:
 driver.switch_to.window(now)
 
 # 填报
-driver.find_element(By.CSS_SELECTOR, '#username.auth_input').send_keys('number')     # 一卡通号
-driver.find_element(By.CSS_SELECTOR, '#password.auth_input').send_keys('password')      # 密码
+driver.find_element(By.CSS_SELECTOR, '#username.auth_input').send_keys('number')
+driver.find_element(By.CSS_SELECTOR, '#password.auth_input').send_keys('password')
 driver.find_element(By.CSS_SELECTOR, '#casLoginForm > p:nth-child(5)').click()
 time.sleep(10)
 try:
