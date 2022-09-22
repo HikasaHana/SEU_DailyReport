@@ -1,6 +1,8 @@
 name: dailyreport
 
-on: [push]
+on: 
+  schedule: 
+    - cron: "0 0 * * *"
 
 jobs:
   build-windows:
@@ -23,7 +25,7 @@ jobs:
       uses: browser-actions/setup-edge@v0.0.0
     - name: Setup Edgedriver and adding to environment variables
       run: |
-        set set PATH=%PATH%;.\edgedriver_win32
+        set set PATH=%PATH%;./edgedriver_win32
     - name: do report
       run: |
         python ./dailyreport.py
