@@ -1,10 +1,14 @@
 # coding=UTF8
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 import requests
 import re
+import os
+
+
+# 添加edgedriver文件夹到环境变量
+os.environ["PATH"] += os.pathsep + os.path.split(os.path.realpath(__file__))[0] + '\edgedriver_win32'
 
 # 获取ip
 def getOutterIP():
