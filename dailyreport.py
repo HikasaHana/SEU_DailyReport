@@ -7,7 +7,7 @@ import time
 
 # 打开浏览器
 options = webdriver.EdgeOptions()
-useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763'
+useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763'     # 默认win10的useragent，可自行修改
 options.add_argument("user-agent:{}".format(useragent))
 options.add_argument("--proxy-server = http://{}".format('183.226.192.242'))    # 填入自己的ip地址
 driver = webdriver.Edge(options=options)
