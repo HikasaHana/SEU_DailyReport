@@ -4,11 +4,11 @@
 
 
 ## 配置要求
-python
-edgedriver（ https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/ ，记得将路径加入环境变量）
+·python  
+·edgedriver（ https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/ ，记得将路径加入环境变量）
 
 
 ## 使用方法
-pip install requirements
-根据注释修改dailyreport.py
-将bat文件设置为windows定时任务（ http://t.zoukankan.com/lishuangyun-p-13072009.html ）
+·pip install requirements  
+·根据注释修改dailyreport.py  
+·将bat文件设置为windows定时任务（ http://t.zoukankan.com/lishuangyun-p-13072009.html ）
