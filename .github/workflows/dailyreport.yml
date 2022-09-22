@@ -24,6 +24,5 @@ jobs:
       uses: browser-actions/setup-edge@v0.0.0
     - name: do report
       run: |
-        set PATH=%PATH%;%cd\edgedriver_win32
         python ./dailyreport.py
         
