@@ -4,7 +4,8 @@
 ## 使用方法  
 ### GitHub Action  
 fork的仓库无法修改可见性，所以先fork，然后新建一个私密的repository，选择import code，把fork的仓库链接复制粘贴进去就行。  
-修改代码中一卡通号和密码，然后action里配置一下。  
+修改代码中一卡通号和密码，然后action里配置一下。 
+⚠⚠GitHub Action搁置中，目前发现即使不使用secrets也会403，先摆了再说⚠⚠
 如果觉得这样做有风险，可以参考上面的链接，做一个secrets和AES加密（这是必要的，否则登录界面会直接403）。  
 ### 本地部署  
 安装python 和 pip模块  
