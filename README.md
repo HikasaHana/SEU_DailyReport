@@ -5,7 +5,7 @@
 fork一份到自己的仓库，设置为private，改一下一卡通号和密码，设置一下workflow，大概就能用了（？）  
 ### 本地部署  
 安装python 和 pip模块  
-pip install -r requirements  
+pip install -r requirements.txt  
 按照提示填写一卡通号和密码  
 将dailyreport.bat添加到windows定时任务（ http://t.zoukankan.com/lishuangyun-p-13072009.html ）  
 由于默认是windows系统，所以如果是ios系统，需要把Edgedriver相关改成safaridriver，并修改useragent，记得将safaridriver的路径添加到环境变量。  
