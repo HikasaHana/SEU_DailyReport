@@ -9,7 +9,7 @@ import time
 options = webdriver.EdgeOptions()
 useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763'     # 默认win10的useragent，可自行修改
 options.add_argument("user-agent:{}".format(useragent))
-options.add_argument("--proxy-server = http://{}".format('183.226.192.242'))    # 填入自己的ip地址
+options.add_argument("--proxy-server = http://{}".format('ip_address'))    # 填入自己的ip地址
 driver = webdriver.Edge(options=options)
 driver.set_page_load_timeout(10)
 url = 'http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/index.do?t_s=1663806336536&amp_sec_version_=1&gid_=UHltZHBQNHNManRNSm1TZzRESHh2ZlAxWERmZmJ3UFNMR0dXTWkweDArK1VEMXF6YVBqNmd5NFl2NGRRVGdTQ3hUZFgzK1UyaTRlT1JFV2o4WFZONHc9PQ&EMAP_LANG=zh&THEME=indigo#/dailyReport'
@@ -25,8 +25,8 @@ for i in all:
 driver.switch_to.window(now)
 
 # 填报
-driver.find_element(By.CSS_SELECTOR, '#username.auth_input').send_keys('213202650')     # 一卡通号
-driver.find_element(By.CSS_SELECTOR, '#password.auth_input').send_keys('Hitorinogcq0701!')      # 密码
+driver.find_element(By.CSS_SELECTOR, '#username.auth_input').send_keys('number')     # 一卡通号
+driver.find_element(By.CSS_SELECTOR, '#password.auth_input').send_keys('password')      # 密码
 driver.find_element(By.CSS_SELECTOR, '#casLoginForm > p:nth-child(5)').click()
 time.sleep(5)
 try:
