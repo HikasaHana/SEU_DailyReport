@@ -7,6 +7,6 @@
 ·python  
 ·edgedriver（ https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/ ，记得将路径加入环境变量）（如果是ios的话，把代码里Edge相关的换成safari，下载safaridriver。不用chrome是因为有奇怪的版本不适配......）  
 ## 使用方法  
-·pip install requirements  
+·pip install selenium
 ·根据注释修改dailyreport.py  
 ·将bat文件设置为windows定时任务（ http://t.zoukankan.com/lishuangyun-p-13072009.html ）
