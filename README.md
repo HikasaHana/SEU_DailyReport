@@ -3,7 +3,9 @@
 只有在自己整了之后才能知道别人写得多好😭  
 ## 使用方法  
 ### GitHub Action  
-fork一份到自己的仓库，设置为private，改一下一卡通号和密码，设置一下workflow，大概就能用了（？）  
+fork的仓库无法修改可见性，所以建议下载到本地，然后新建一个私密的repository上传。  
+修改代码中一卡通号和密码，然后action里配置一下。  
+如果觉得这样做有风险，可以参考上面的链接，做一个secrets和AES加密（这是必要的，否则登录界面会直接403）。  
 ### 本地部署  
 安装python 和 pip模块  
 pip install -r requirements.txt  
