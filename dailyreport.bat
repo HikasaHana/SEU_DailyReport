@@ -1,2 +1,2 @@
 python dailyreport.py
-taskkill /F /T /IM cmd.exe
+taskkill /F /T /IM cmd.ex
