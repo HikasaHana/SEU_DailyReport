@@ -64,6 +64,8 @@ options.add_argument("user-agent:{}".format(useragent))
 options.add_argument("--proxy-server = http://{}".format(getOutterIP(ip)))
 driver = webdriver.Edge(options=options)
 url = 'http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/index.do?t_s=1663806336536&amp_sec_version_=1&gid_=UHltZHBQNHNManRNSm1TZzRESHh2ZlAxWERmZmJ3UFNMR0dXTWkweDArK1VEMXF6YVBqNmd5NFl2NGRRVGdTQ3hUZFgzK1UyaTRlT1JFV2o4WFZONHc9PQ&EMAP_LANG=zh&THEME=indigo#/dailyReport'
+
+# 超时刷新
 while True:
     try:
         driver.get(url)
@@ -81,16 +83,20 @@ for i in all:
         driver.close()
 driver.switch_to.window(now)
 
-# 填报
+# 登录，账号密码有效性检查
 driver.find_element(By.CSS_SELECTOR, '#username.auth_input').send_keys(number)
 driver.find_element(By.CSS_SELECTOR, '#password.auth_input').send_keys(password)
 driver.find_element(By.CSS_SELECTOR, '#casLoginForm > p:nth-child(5)').click()
-if driver.find_element(By.CLASS_NAME, 'auth_error'):
+try:
+    driver.find_element(By.CLASS_NAME, 'auth_error')
     error = '登录失败！' + driver.find_element(By.CLASS_NAME, 'auth_error').text
     send_msg(error)
     driver.close()
-    exit(-1)
-time.sleep(10)
+    os._exit(0)
+except:
+    time.sleep(10)
+
+# 超时刷新
 while True:
     try:
         report_time = driver.find_element(By.CSS_SELECTOR, '#row0emapdatatable > td:nth-child(95) > span').get_attribute('innerText')
@@ -98,6 +104,8 @@ while True:
     except:
         driver.refresh()
         time.sleep(10)
+
+# 填报
 try:
     driver.find_element(By.CSS_SELECTOR, 'body > main > article > section > div.bh-mb-16 > div.bh-btn.bh-btn-primary').click()
     time.sleep(10)
