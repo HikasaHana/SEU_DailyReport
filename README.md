@@ -5,13 +5,13 @@
 ### GitHub Action  
 fork的仓库无法修改可见性，所以先fork，然后新建一个私密的repository，选择import code，把fork的仓库链接复制粘贴进去就行。  
 修改代码中一卡通号和密码，然后action里配置一下。   
-⚠⚠GitHub Action搁置中，目前发现即使不使用secrets也会403，先摆了再说⚠⚠  
-如果觉得这样做有风险，可以参考上面的链接，做一个secrets和AES加密（这是必要的，否则登录界面会直接403）。  
 ### 本地部署  
-安装python 和 pip模块  
-pip install -r requirements.txt  
-按照提示填写一卡通号和密码  
-将dailyreport.bat添加到windows定时任务（ http://t.zoukankan.com/lishuangyun-p-13072009.html ）  
+1.安装python 和 pip模块  
+2.pip install -r requirements.txt  
+3.按照提示填写一卡通号和密码  
+4.将dailyreport.bat添加到windows定时任务（ http://t.zoukankan.com/lishuangyun-p-13072009.html ）。  
+配置的常规选择Win10操作的“起始于（可选）栏”填写bat文件所在文件夹。  
+  
 由于默认是windows系统，所以如果是ios系统，需要把Edgedriver相关改成safaridriver，并修改useragent，记得将safaridriver的路径添加到环境变量。  
 ## 注意  
 体温默认填写36.3，其余数据按照前一天数据不做改动。有信息变动的需要注意手动日报一次。（自动运行时间为每日八点）  
