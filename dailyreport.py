@@ -83,7 +83,7 @@ try:
     time.sleep(10)
     driver.find_element(By.CSS_SELECTOR, 'body > main > article > section > div.bh-mb-16 > div.bh-btn.bh-btn-primary').click()
     time.sleep(10)
-    driver.find_element(By.NAME, 'DZ_JSDTCJTW').send_keys('36.3')   # 体温
+    driver.find_element(By.NAME, 'DZ_JSDTCJTW').send_keys(temp)   # 体温
     driver.find_element(By.CSS_SELECTOR, '#save').click()
     driver.find_element(By.CLASS_NAME, 'bh-dialog-btn').click()
     send_msg('填报成功！')
