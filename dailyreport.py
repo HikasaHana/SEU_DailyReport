@@ -5,33 +5,62 @@ import time
 import requests
 import re
 import os
+import base64
 
 
+# 通过webhook发送消息
+def send_msg(message):
+    webhook = 'http://43.128.252.241/send_private_msg'
+    qq = ''      # 要使用webhook功能，请填入QQ号码，并加1211687441为好友
+    if qq != '':
+        data = {"user_id": qq,
+                "message": message}
+        requests.post(webhook, data)
+    
+    
+# 通过webhook发送截图
+def send_screenshots(driver):
+    timeline = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+    pic_path = "%s.png" % timeline
+    driver.get_screenshot_as_file(pic_path)
+    with open(pic_path, "rb") as f:
+        img_data = f.read()
+        base64_data = base64.b64encode(img_data)
+        base64_str = str(base64_data, "utf-8")
+        base_str = 'base64://' + base64_str
+        cq_img = '[CQ:image,file=' + base_str + ',cache=1]'
+    send_msg(cq_img)
+    os.remove(pic_path)
+    
+    
+# 获取ip地址
+def getOutterIP(ip):
+    if ip == '':
+        try:
+            res = requests.get('https://myip.ipip.net', timeout=5).text
+            ip = re.findall(r'(\d+\.\d+\.\d+\.\d+)', res)
+            ip = ip[0] if ip else ''
+        except:
+            pass
+    return ip
+    
+    
 # 配置信息
 number = ''     # 一卡通号
 password = ''       # 密码
+ip = ''     # ip地址，若不填则默认获取本地ip
+temp = '36.3'   # 体温，默认36.3
 
 # 如果edgedriver文件夹不在环境变量中，则添加
 if os.environ["PATH"].find('edgedriver') == -1:
     file_path = os.path.split(os.path.realpath(__file__))[0] + '\edgedriver_win32'
     os.environ["PATH"] += os.pathsep + file_path
 
-# 获取ip
-def getOutterIP():
-    ip = ''    
-    try:
-        res = requests.get('https://myip.ipip.net', timeout=5).text
-        ip = re.findall(r'(\d+\.\d+\.\d+\.\d+)', res)
-        ip = ip[0] if ip else ''
-    except:
-        pass
-    return ip
-
 # 打开浏览器
 options = webdriver.EdgeOptions()
 useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763'     # 默认win10的useragent，可自行修改
 options.add_argument("user-agent:{}".format(useragent))
-options.add_argument("--proxy-server = http://{}".format(getOutterIP()))
+options.add_argument("--proxy-server = http://{}".format(getOutterIP(ip)))
 driver = webdriver.Edge(options=options)
 url = 'http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/index.do?t_s=1663806336536&amp_sec_version_=1&gid_=UHltZHBQNHNManRNSm1TZzRESHh2ZlAxWERmZmJ3UFNMR0dXTWkweDArK1VEMXF6YVBqNmd5NFl2NGRRVGdTQ3hUZFgzK1UyaTRlT1JFV2o4WFZONHc9PQ&EMAP_LANG=zh&THEME=indigo#/dailyReport'
 driver.get(url)
@@ -44,19 +73,21 @@ for i in all:
         driver.switch_to.window(i)
         driver.close()
 driver.switch_to.window(now)
+time.sleep(10)
 
 # 填报
-driver.find_element(By.CSS_SELECTOR, '#username.auth_input').send_keys('number')
-driver.find_element(By.CSS_SELECTOR, '#password.auth_input').send_keys('password')
-driver.find_element(By.CSS_SELECTOR, '#casLoginForm > p:nth-child(5)').click()
-time.sleep(10)
 try:
+    driver.find_element(By.CSS_SELECTOR, '#username.auth_input').send_keys(number)
+    driver.find_element(By.CSS_SELECTOR, '#password.auth_input').send_keys(password)
+    driver.find_element(By.CSS_SELECTOR, '#casLoginForm > p:nth-child(5)').click()
+    time.sleep(10)
     driver.find_element(By.CSS_SELECTOR, 'body > main > article > section > div.bh-mb-16 > div.bh-btn.bh-btn-primary').click()
     time.sleep(10)
     driver.find_element(By.NAME, 'DZ_JSDTCJTW').send_keys('36.3')   # 体温
     driver.find_element(By.CSS_SELECTOR, '#save').click()
     driver.find_element(By.CLASS_NAME, 'bh-dialog-btn').click()
-    print("上报成功！")
+    send_msg('填报成功！')
 except:
-    print("今日已填报！")
+    send_screenshots(driver)
+    send_msg('填报异常！请检查截图')
 driver.close()
