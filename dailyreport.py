@@ -85,6 +85,11 @@ driver.switch_to.window(now)
 driver.find_element(By.CSS_SELECTOR, '#username.auth_input').send_keys(number)
 driver.find_element(By.CSS_SELECTOR, '#password.auth_input').send_keys(password)
 driver.find_element(By.CSS_SELECTOR, '#casLoginForm > p:nth-child(5)').click()
+if driver.find_element(By.CLASS_NAME, 'auth_error'):
+    error = '登录失败！' + driver.find_element(By.CLASS_NAME, 'auth_error').text
+    send_msg(error)
+    driver.close()
+    exit(-1)
 time.sleep(10)
 while True:
     try:
