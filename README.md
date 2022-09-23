@@ -3,8 +3,8 @@
 只有在自己整了之后才能知道别人写得多好😭  
 ## 使用方法  
 ### GitHub Action  
-1.fork的仓库无法修改可见性，所以先fork，然后新建一个私密的repository，选择import code，把fork的仓库链接复制粘贴进去就行。  
-2.修改代码中的配置信息，然后action里配置一下。   
+1.由于fork的仓库无法修改可见性，默认公开（你的一卡通号和密码），所以要新建一个private的repository，选择import code，把本仓库的链接复制粘贴进去就行。  
+2.修改代码中的配置信息，然后检查一下action是否正常。   
   
 默认每天早上八点填报，可自行修改.github/workflows/dailyreport.yml中第五行代码调整时间。  
 ### 本地部署  
