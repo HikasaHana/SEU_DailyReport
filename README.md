@@ -9,7 +9,7 @@
 默认每天早上八点填报，可自行修改.github/workflows/dailyreport.yml中第五行代码调整时间。  
 ### 本地部署  
 1.安装python 和 pip模块  
-2.pip install -r requirements.txt  
+2.运行requirements.bat
 3.按照提示填写一卡通号和密码  
 4.将dailyreport.bat添加到windows定时任务（ http://t.zoukankan.com/lishuangyun-p-13072009.html ）。  
 常规中的配置选择Win10，操作中的“起始于（可选）”栏填写bat文件所在文件夹。  
