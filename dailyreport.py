@@ -10,8 +10,8 @@ import base64
 
 # 通过webhook发送消息
 def send_msg(message):
-    webhook = 'http://43.128.252.241/send_private_msg'
-    qq = ''      # 要使用webhook功能，请填入QQ号码，并加1211687441为好友
+    webhook = 'http://43.128.252.241/send_private_msg'  # webhook URL，可自行部署，或使用默认
+    qq = ''      # 要使用默认webhook功能，请填入QQ号码，并加1211687441为好友
     if qq != '':
         data = {"user_id": qq,
                 "message": message}
