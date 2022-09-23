@@ -5,7 +5,7 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  build-windows:
+  dailyreport:
     runs-on: windows-latest
     strategy:
       max-parallel: 5
