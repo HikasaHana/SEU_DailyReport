@@ -12,7 +12,7 @@
 2.pip install -r requirements.txt  
 3.按照提示填写一卡通号和密码  
 4.将dailyreport.bat添加到windows定时任务（ http://t.zoukankan.com/lishuangyun-p-13072009.html ）。  
-配置的常规选择Win10操作的“起始于（可选）栏”填写bat文件所在文件夹。  
+常规中的配置选择Win10，操作中的“起始于（可选）”栏填写bat文件所在文件夹。  
   
 由于默认是windows系统，所以如果是ios系统，需要把Edgedriver相关改成safaridriver，并修改useragent，记得将safaridriver的路径添加到环境变量。  
 ## 注意  
