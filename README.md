@@ -10,7 +10,7 @@
 ### 本地部署  
 1.安装python 和 pip模块  
 2.运行requirements.bat，检查所有模块是否成功安装  
-3.修改代码中的配置信息 
+3.修改代码中的配置信息   
 4.将dailyreport.bat添加到windows定时任务（ http://t.zoukankan.com/lishuangyun-p-13072009.html ）。  
 常规中的配置选择Win10，操作中的“起始于（可选）”栏填写bat文件所在文件夹。  
   
