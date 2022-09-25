@@ -19,10 +19,10 @@
 体温默认填写36.3，其余数据按照前一天数据不做改动。有信息变动的需要注意在自动日报之前手动日报一次覆盖信息。  
 有其他自动日报（上面的链接）的使用者反映系统检测出“非人工打卡”而提示“健康状态异常”，导致入校申请不通过。  
 ## 附录：webhook部署（服务器端）  
-1.下载go-cqhttp（https://github.com/Mrs4s/go-cqhttp/releases）  
+1.下载go-cqhttp（ https://github.com/Mrs4s/go-cqhttp/releases ）  
 2.初次运行时，选择HTTP通信，然后按照提示修改配置文件。记得添加机器人为QQ好友。  
-3.服务器端下载宝塔面板（https://www.bt.cn/new/product.html），下载完成后，根据所给链接、账号、密码从控制端登录。  
+3.服务器端下载宝塔面板（ https://www.bt.cn/new/product.html ），下载完成后，根据所给链接、账号、密码从控制端登录。  
 4.选择网站→添加站点→创建站点，域名填写服务器公网IP。  
 5.点击网站名，选择反向代理→添加反向代理，目标URL填写go-cqhttp配置文件中HTTP代理（默认为127.0.0.1:5700）。  
 6.运行go-cqhttp。  
-7.浏览器访问http://服务器公网ip/send_private_msg?user_id=你的QQ&message=123，测试消息是否成功发送。  
+7.浏览器访问http://服务器公网ip/send_private_msg?user_id=你的QQ&message=123 ，测试消息是否成功发送。  
