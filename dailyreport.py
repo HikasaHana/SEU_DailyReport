@@ -51,6 +51,7 @@ number = ''     # 一卡通号
 password = ''       # 密码
 ip = ''     # ip地址，若不填则默认获取本地ip
 temp = '36.3'   # 体温，默认36.3
+max_try = '3'   # 最大刷新次数，只对登录信息门户时有效。
 
 # 如果edgedriver文件夹不在环境变量中，则添加
 if os.environ["PATH"].find('edgedriver') == -1:
@@ -66,12 +67,17 @@ driver = webdriver.Edge(options=options)
 url = 'http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/index.do?t_s=1663806336536&amp_sec_version_=1&gid_=UHltZHBQNHNManRNSm1TZzRESHh2ZlAxWERmZmJ3UFNMR0dXTWkweDArK1VEMXF6YVBqNmd5NFl2NGRRVGdTQ3hUZFgzK1UyaTRlT1JFV2o4WFZONHc9PQ&EMAP_LANG=zh&THEME=indigo#/dailyReport'
 
 # 超时刷新
+count = 0
 while True:
+    if count == max_try:
+            send_msg('多次刷新无法进入网页！请访问 ehall.seu.edu.cn 检查学校服务器是否正在维护，并在其他时段再次尝试！')
+            os._exit(0)
     try:
         driver.get(url)
         break
     except:
         driver.refresh()
+        count += 1
         time.sleep(10)
 
 # 关闭多余窗口
