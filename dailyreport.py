@@ -80,7 +80,7 @@ while True:
         count += 1
         time.sleep(10)
 
-# 关闭多余窗口
+# 关闭多余窗口，调整窗口至全屏
 now = driver.current_window_handle
 all = driver.window_handles
 for i in all:
