@@ -88,6 +88,7 @@ for i in all:
         driver.switch_to.window(i)
         driver.close()
 driver.switch_to.window(now)
+driver.maximize_window()
 
 # 登录，账号密码有效性检查
 driver.find_element(By.CSS_SELECTOR, '#username.auth_input').send_keys(number)
