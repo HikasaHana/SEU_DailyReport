@@ -69,10 +69,10 @@ url = 'http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/index.do?t_s=16
 # 超时刷新
 count = 0
 while True:
-    if count == max_try:
+    try:
+        if count == max_try:
             send_msg('多次刷新无法进入网页！请访问 ehall.seu.edu.cn 检查学校服务器是否正在维护，并在其他时段再次尝试！')
             os._exit(0)
-    try:
         driver.get(url)
         break
     except:
